@@ -1,5 +1,5 @@
 def main():
-    with open('input.txt', 'r') as fp:
+    with open("input.txt", "r") as fp:
         lines = fp.readlines()
 
     elves = list()
