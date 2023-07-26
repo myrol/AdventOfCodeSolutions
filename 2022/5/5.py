@@ -8,7 +8,7 @@ def main():
 def solution(input):
     for line in input:
         if line[1] == "1":
-            stacks_len = int(line[len(line)-2])
+            stacks_len = int(line[len(line) - 2])
             break
     stacks = list()
     for i in range(stacks_len):
@@ -21,13 +21,13 @@ def solution(input):
             continue
         if initiate_stacks:
             for i in range(0, len(line), 4):
-                stack_index = int(i/4)
-                letter = line[i+1]
+                stack_index = int(i / 4)
+                letter = line[i + 1]
                 if letter.isspace():
                     continue
                 stacks[stack_index].insert(0, letter)
         else:
-            n, f, t = sanitizeCommand(line)
+            n, f, t = sanitize_command(line)
             # PART ONE
             for i in range(n):
                 stacks[t].append(stacks[f].pop())
@@ -41,11 +41,12 @@ def solution(input):
         output += stack[-1]
     print(output)
 
-def sanitizeCommand(s):
+
+def sanitize_command(s):
     line = s[5:]
     numerator, line = line.split(" from ")
     from_stack, to_stack = line.split(" to ")
-    numerator, from_stack, to_stack = int(numerator), int(from_stack)-1, int(to_stack)-1
+    numerator, from_stack, to_stack = int(numerator), int(from_stack) - 1, int(to_stack) - 1
     return numerator, from_stack, to_stack
 
 
