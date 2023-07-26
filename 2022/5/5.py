@@ -1,12 +1,15 @@
 def main():
-    with open("input.txt", "r") as fp:
+    with open("jan.txt", "r") as fp:
         input = fp.readlines()
 
     solution(input)
 
 
 def solution(input):
-    stacks_len = int((len(input[0])+1)/4)
+    for line in input:
+        if line[1] == "1":
+            stacks_len = int(line[len(line)-2])
+            break
     stacks = list()
     for i in range(stacks_len):
         stacks.append(list())
@@ -26,14 +29,13 @@ def solution(input):
         else:
             n, f, t = sanitizeCommand(line)
             # PART ONE
-            # for i in range(n):
-            #     stacks[t].append(stacks[f].pop())
-
-            # PART TWO
-            multiple_crates = stacks[f][-n:]
-            stacks[t].extend(multiple_crates)  # PART TWO
             for i in range(n):
-                stacks[f].pop()
+                stacks[t].append(stacks[f].pop())
+            # PART TWO
+            # multiple_crates = stacks[f][-n:]
+            # stacks[t].extend(multiple_crates)  # PART TWO
+            # for i in range(n):
+            #     stacks[f].pop()
     output = ""
     for i, stack in enumerate(stacks):
         output += stack[-1]
