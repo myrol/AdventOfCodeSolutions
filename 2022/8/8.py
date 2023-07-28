@@ -2,15 +2,16 @@ def main():
     with open("input.txt", "r") as fp:
         matrix = fp.readlines()
 
+    matrix = [line.strip() for line in matrix]
     global width, height
-    width, height = len(matrix[0].strip()), len(matrix)
+    width, height = len(matrix[0]), len(matrix)
+
     n_trees_visible = 0
     scenic_scores = list()
     for i in range(width):
         for j in range(height):
             n_trees_visible += 1 if is_visible(matrix, i, j) else 0
             scenic_scores.append(scenic_score(matrix, i, j))
-    print(n_trees_visible)
     print(max(scenic_scores))
 
 
